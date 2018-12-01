@@ -20,5 +20,11 @@ public class PlayerMovementController : MonoBehaviour
         delta *= speed * Time.fixedDeltaTime;
         Vector2 position = myRigidbody2D.position + delta;
         myRigidbody2D.MovePosition(position);
+
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+        float AngleRad = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
+        float angle = (180 / Mathf.PI) * AngleRad - 90;
+
+        myRigidbody2D.rotation = angle;
     }
 }
