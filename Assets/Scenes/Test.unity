@@ -288,9 +288,9 @@ GameObject:
   m_Component:
   - component: {fileID: 430419091}
   - component: {fileID: 430419095}
+  - component: {fileID: 430419093}
   - component: {fileID: 430419092}
   - component: {fileID: 430419094}
-  - component: {fileID: 430419093}
   - component: {fileID: 430419096}
   m_Layer: 9
   m_Name: Guard
@@ -347,7 +347,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300020, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  m_Sprite: {fileID: 21300028, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -369,12 +369,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818b3e5bfeb9a3b4498f0177fe68ab5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  turn: 0.1
-  rateOfFire: 1
+  spriteSet: {fileID: 11400000, guid: 7dd191481ab2ee44fbd4284cd4329eea, type: 2}
   bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
     type: 2}
-  spawnPoint: {x: -0.2, y: 0.05}
+  spawnPoint: {x: -0.25, y: 0.25}
+  slowSpeed: 1
+  fastSpeed: 1
+  walkAwayDistance: 1.5
+  runAwayDistance: 0.75
+  turn: 0.1
+  rateOfFire: 0.5
+  warning: 0.2
 --- !u!61 &430419094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -663,12 +668,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818b3e5bfeb9a3b4498f0177fe68ab5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  turn: 0.1
-  rateOfFire: 1
+  spriteSet: {fileID: 11400000, guid: dd7603fb1ec4c6a4fb58b06040268b18, type: 2}
   bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
     type: 2}
-  spawnPoint: {x: 0, y: 0}
+  spawnPoint: {x: -0.25, y: 0.25}
+  slowSpeed: 1
+  fastSpeed: 1
+  walkAwayDistance: 0
+  runAwayDistance: 0
+  turn: 0.1
+  rateOfFire: 0.5
+  warning: 0.2
 --- !u!61 &737619593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1096,12 +1106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818b3e5bfeb9a3b4498f0177fe68ab5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  turn: 0.1
-  rateOfFire: 1
+  spriteSet: {fileID: 11400000, guid: e2dd006fb3fb2d540961a815d8d9dc2b, type: 2}
   bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
     type: 2}
-  spawnPoint: {x: 0, y: 0}
+  spawnPoint: {x: -0.25, y: 0.25}
+  slowSpeed: 1
+  fastSpeed: 1
+  walkAwayDistance: 0
+  runAwayDistance: 0
+  turn: 0.1
+  rateOfFire: 0.5
+  warning: 0.2
 --- !u!61 &1266230869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1228,7 +1243,7 @@ GameObject:
   - component: {fileID: 1392368811}
   - component: {fileID: 1392368810}
   - component: {fileID: 1392368809}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1390,7 @@ GameObject:
   - component: {fileID: 1596658125}
   - component: {fileID: 1596658124}
   - component: {fileID: 1596658123}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

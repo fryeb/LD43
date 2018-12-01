@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class GuardController : MonoBehaviour
 {
+    public SpriteSet spriteSet;
+
+    public Transform bulletPrefab;
+    public Vector2 spawnPoint = Vector3.zero;
     [Range(1f, 15f)]
-    public float speed = 1f;
+    public float slowSpeed = 1f;
+    [Range(1f, 15f)]
+    public float fastSpeed = 1f;
+    [Range(.01f, 2f)]
+    public float walkAwayDistance;
+    [Range(.01f, 2f)]
+    public float runAwayDistance;
     [Range(.01f, .1f)]
     public float turn = .1f;
     [Range(.1f, 10)]
     public float rateOfFire = 1;
+    [Range(0f, 1f)]
+    public float warning = 0.5f;
 
     private float cooldown = 0f;
 
     private Rigidbody2D myRigidbody2D;
     private Transform myTransform;
-
-    public Transform bulletPrefab;
-    public Vector2 spawnPoint = Vector3.zero;
+    private SpriteRenderer myRenderer;
+    private int layerMask;
 
     private static readonly Vector2[] directions =
     {
@@ -34,24 +46,33 @@ public class GuardController : MonoBehaviour
 
     void Start()
     {
+        Debug.Assert(walkAwayDistance >= runAwayDistance);
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+        myRenderer = GetComponent<SpriteRenderer>();
+        layerMask = (1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Wall"));
+    }
+
+    void Update()
+    {
+        if (cooldown > (1/rateOfFire)*warning)
+            myRenderer.sprite = spriteSet.ready;
+        else
+            myRenderer.sprite = spriteSet.attack;
+            
     }
 
     void FixedUpdate()
     {
         cooldown -= Time.fixedDeltaTime;
-
-        int layerMask = (1 << gameObject.layer);
-        layerMask = ~layerMask;
-
-        Vector2 playerPosition = (Vector2)GameManager.Instance.playerTransform.position;
-        Vector2 thisPosition = (Vector2)myTransform.position;
+        Vector2 playerPosition = GameManager.Instance.playerTransform.position;
+        Vector2 thisPosition = myTransform.position;
        
-        float walkableDistance = speed*Time.fixedDeltaTime;
+        Vector2 thisToPlayerDirection = (playerPosition - thisPosition);
+
+        float walkableDistance = slowSpeed*Time.fixedDeltaTime;
         float distance = Mathf.Infinity;
         Vector2 direction = Vector2.zero;
-        Vector2 thisToPlayerDirection = (playerPosition - thisPosition);
         Vector2 lookDirection = Vector2.zero;
         foreach (Vector2 shootCandidate in directions)
         {
@@ -81,16 +102,31 @@ public class GuardController : MonoBehaviour
             distance = candidateDistance;
         }
 
+        float distanceToPlayer = thisToPlayerDirection.magnitude;
+        float speed = slowSpeed;
+        if (distanceToPlayer <= runAwayDistance)
+        {
+            speed = fastSpeed;
+            lookDirection *= -1;
+            direction = lookDirection;
+        }
+        else if (distanceToPlayer <= walkAwayDistance)
+        {
+            direction = -lookDirection;  
+        }
+
+        RaycastHit2D lineOfSight = Physics2D.Raycast(thisPosition, thisToPlayerDirection, Mathf.Infinity, layerMask); 
         myRigidbody2D.MovePosition(thisPosition + direction * Mathf.Min(distance, walkableDistance));
+        if (lineOfSight.collider == null || lineOfSight.collider.gameObject.tag != "Player")
+        {
+            lookDirection = direction;
+            Debug.Log("cant see player");
+        }
 
         if (distance < walkableDistance) Shoot();
 
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90;
-        if (Mathf.Abs(myRigidbody2D.rotation - angle) > 180)
-            myRigidbody2D.MoveRotation(Mathf.Lerp(myRigidbody2D.rotation, angle - 360f, Time.fixedDeltaTime / turn));
-        else
-            myRigidbody2D.MoveRotation(Mathf.Lerp(myRigidbody2D.rotation, angle, Time.fixedDeltaTime / turn));
-
+        myRigidbody2D.MoveRotation(angle);
     }
 
     void Shoot()
@@ -109,5 +145,9 @@ public class GuardController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.TransformPoint(spawnPoint), .05f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, walkAwayDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, runAwayDistance);
     }
 }
