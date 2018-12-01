@@ -16,9 +16,8 @@ public class Health : MonoBehaviour
             GameManager.Instance.playerHealth.Heal();
             GameManager.Instance.killCount++;
             Destroy(gameObject);
+            Debug.Log(gameObject.name + "Took dammage");
         }
-
-        Debug.Log("hit");
     }
 
     public void Heal()

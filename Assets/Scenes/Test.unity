@@ -247,7 +247,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 286981170}
   m_LocalRotation: {x: -0, y: -0, z: 0.9938026, w: 0.11115923}
-  m_LocalPosition: {x: -0.687, y: -1.207, z: 0}
+  m_LocalPosition: {x: 1.476, y: 2.407, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &430419092
 SpriteRenderer:
@@ -371,6 +371,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   turn: 0.1
+  rateOfFire: 1
+  bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
+    type: 2}
+  spawnPoint: {x: -0.2, y: 0.05}
 --- !u!61 &430419094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -488,7 +492,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &443736364
 GameObject:
@@ -661,6 +665,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   turn: 0.1
+  rateOfFire: 1
+  bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
+    type: 2}
+  spawnPoint: {x: 0, y: 0}
 --- !u!61 &737619593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -867,7 +875,7 @@ RectTransform:
   - {fileID: 654512583}
   - {fileID: 443736365}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -885,7 +893,6 @@ GameObject:
   - component: {fileID: 871008499}
   - component: {fileID: 871008498}
   - component: {fileID: 871008497}
-  - component: {fileID: 871008496}
   m_Layer: 0
   m_Name: Prisoner
   m_TagString: Untagged
@@ -893,19 +900,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &871008496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 871008495}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818b3e5bfeb9a3b4498f0177fe68ab5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  turn: 0.1
 --- !u!61 &871008497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1000,7 +994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243838944
 GameObject:
@@ -1104,6 +1098,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   turn: 0.1
+  rateOfFire: 1
+  bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
+    type: 2}
+  spawnPoint: {x: 0, y: 0}
 --- !u!61 &1266230869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1319,7 +1317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476613552
 GameObject:
