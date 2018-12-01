@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float damageAmount = 1f;
     public int killCount = 0;
 
+    public Transform playerTransform;
     public Health playerHealth;
 
     private static GameManager instance;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.GetComponent<Transform>();
         playerHealth = player.GetComponent<Health>();
     }
 }

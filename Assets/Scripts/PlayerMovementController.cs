@@ -60,7 +60,7 @@ public class PlayerMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
         {
             look.y -= 2;
-            stabbing = false;
+            stabbing = true;
         }
 
         if (!stabbing) look = delta;
