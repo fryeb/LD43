@@ -22,7 +22,7 @@ public class PlayerAttackController : MonoBehaviour
 
     void Update()
     {
-        attacking = Input.GetMouseButton(0);
+        attacking = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
         spriteRenderer.sprite = attacking ? spriteSet.attack : spriteSet.ready;
 
         if (attacking)
