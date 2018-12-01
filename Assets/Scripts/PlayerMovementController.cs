@@ -63,13 +63,10 @@ public class PlayerMovementController : MonoBehaviour
             stabbing = true;
         }
 
-        if (!stabbing) look = delta;
+        if (!stabbing && delta.sqrMagnitude > 0.0f) look = delta;
         else look.Normalize();
 
         float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
-        if (Mathf.Abs(myRigidbody2D.rotation - angle) > 180)
-            myRigidbody2D.MoveRotation(Mathf.Lerp(myRigidbody2D.rotation, angle - 360f, Time.fixedDeltaTime / turn));
-        else
-            myRigidbody2D.MoveRotation(Mathf.Lerp(myRigidbody2D.rotation, angle, Time.fixedDeltaTime / turn));
+        myRigidbody2D.MoveRotation(angle);
     }
 }
