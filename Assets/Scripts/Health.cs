@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             GameManager.Instance.playerHealth.Heal();
+            GameManager.Instance.killCount++;
             Destroy(gameObject);
         }
 

@@ -25,6 +25,12 @@ TextureImporter:
     21300040: heart1
     21300042: heart2
     21300044: heart_dark
+    21300046: devil3
+    21300048: devil2
+    21300050: devil1
+    21300052: devil0
+    21300054: claw0
+    21300056: claw1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -573,6 +579,126 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3360c86f3ef1bac4ebdde471a8486612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: devil3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b1384f2c90b0342bef1bd9b7bb50b9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: devil2
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 2
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca485b285d869141b1b356449f01419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: devil1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 2
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f62f3814db52ed499497791df204ded
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: devil0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 2
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6e86701950e6a4f941fa67f9d5694b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: claw0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0060c7f14c37a546a812951036b058a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: claw1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d073c74fabc494b9a789c7011f8691
       vertices: []
       indices: 
       edges: []

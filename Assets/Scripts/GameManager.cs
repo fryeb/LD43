@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public float overhealBoost = 1f;
     public float healAmount = 1f;
     public float damageAmount = 1f;
+    public int killCount = 0;
 
     public Health playerHealth;
 
