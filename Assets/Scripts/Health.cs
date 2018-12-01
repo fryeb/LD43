@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [System.NonSerialized] public float health = 1f;
-    public float maxHealth = 1f;
-
-    void Start()
-    {
-        health = maxHealth;
-    }
-
-    public float GetSpeedBoost()
-    { 
-        float overheal = Mathf.Clamp01(health - maxHealth);
-        return overheal * GameManager.Instance.overhealBoost;
-    }
+    public int health = 4;
+    public const int MaxHealth = 4;
 
     // TODO: Overheal should go down over time
-
     public void TakeDamage()
     {
-        health -= GameManager.Instance.damageAmount;
+        health--;
         if (health <= 0)
         {
             GameManager.Instance.playerHealth.Heal();
@@ -34,7 +22,7 @@ public class Health : MonoBehaviour
 
     public void Heal()
     {
-        health += GameManager.Instance.healAmount;
+        health = (health >= MaxHealth) ? MaxHealth : health + 1;
         Debug.Log("Healing to: " + health);
     }
 }
