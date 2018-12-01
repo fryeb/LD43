@@ -11,13 +11,9 @@ public class GuardController : MonoBehaviour
     public Transform bulletPrefab;
     public Vector2 spawnPoint = Vector3.zero;
     [Range(1f, 15f)]
-    public float slowSpeed = 1f;
-    [Range(1f, 15f)]
-    public float fastSpeed = 1f;
+    public float speed = 1f;
     [Range(.01f, 2f)]
     public float walkAwayDistance;
-    [Range(.01f, 2f)]
-    public float runAwayDistance;
     [Range(.01f, .1f)]
     public float turn = .1f;
     [Range(.1f, 10)]
@@ -46,7 +42,6 @@ public class GuardController : MonoBehaviour
 
     void Start()
     {
-        Debug.Assert(walkAwayDistance >= runAwayDistance);
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
         myRenderer = GetComponent<SpriteRenderer>();
@@ -70,7 +65,7 @@ public class GuardController : MonoBehaviour
        
         Vector2 thisToPlayerDirection = (playerPosition - thisPosition);
 
-        float walkableDistance = slowSpeed*Time.fixedDeltaTime;
+        float walkableDistance = speed*Time.fixedDeltaTime;
         float distance = Mathf.Infinity;
         Vector2 direction = Vector2.zero;
         Vector2 lookDirection = Vector2.zero;
@@ -103,17 +98,8 @@ public class GuardController : MonoBehaviour
         }
 
         float distanceToPlayer = thisToPlayerDirection.magnitude;
-        float speed = slowSpeed;
-        if (distanceToPlayer <= runAwayDistance)
-        {
-            speed = fastSpeed;
-            lookDirection *= -1;
-            direction = lookDirection;
-        }
-        else if (distanceToPlayer <= walkAwayDistance)
-        {
-            direction = -lookDirection;  
-        }
+        if (distanceToPlayer <= walkAwayDistance)
+            direction = -lookDirection;
 
         RaycastHit2D lineOfSight = Physics2D.Raycast(thisPosition, thisToPlayerDirection, Mathf.Infinity, layerMask); 
         myRigidbody2D.MovePosition(thisPosition + direction * Mathf.Min(distance, walkableDistance));
@@ -145,9 +131,7 @@ public class GuardController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.TransformPoint(spawnPoint), .05f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, walkAwayDistance);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, runAwayDistance);
+        Gizmos.DrawWireSphere(transform.position, walkAwayDistance);
     }
 }

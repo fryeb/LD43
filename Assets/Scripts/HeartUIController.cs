@@ -16,7 +16,7 @@ public class HeartUIController : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    void Update()
+    void UpdateHeart()
     {
         int health = GameManager.Instance.playerHealth.health;
         if (health > hearts.Length) health = hearts.Length;

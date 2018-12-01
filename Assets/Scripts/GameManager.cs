@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance {  get { return instance; } }
 
-    void Start()
+    void Awake()
     {
         if (instance != null)
             Debug.LogError("Multiple GameManagers");
