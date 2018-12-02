@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int killCount = 0;
 
     public Transform playerTransform;
-    public Health playerHealth;
+    public int playerHealth = 2;
 
     private static GameManager instance;
     public static GameManager Instance {  get { return instance; } }
@@ -24,6 +24,5 @@ public class GameManager : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.GetComponent<Transform>();
-        playerHealth = player.GetComponent<Health>();
     }
 }

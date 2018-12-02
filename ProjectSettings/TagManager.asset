@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Dead
+    uniqueID: 4154593655
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Living
+    uniqueID: 3086171023
     locked: 0

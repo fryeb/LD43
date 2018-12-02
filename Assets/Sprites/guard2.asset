@@ -14,3 +14,4 @@ MonoBehaviour:
   idle: {fileID: 21300030, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   ready: {fileID: 21300032, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   attack: {fileID: 21300034, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  dead: {fileID: 21300070, guid: 6165b06362b819b4791515f965aba2d4, type: 3}

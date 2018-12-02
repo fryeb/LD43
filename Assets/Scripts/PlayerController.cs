@@ -5,17 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-
     public SpriteSet spriteSet;
 
     [Range(.5f, 15f)]
     public float slowSpeed = 1f;
     [Range(.5f, 15f)]
     public float fastSpeed = 5f;
-    [Range(.01f, .1f)]
-    public float slowTurn = .1f;
-    [Range(.01f, .1f)]
-    public float fastTurn = .01f;
 
     public float radius = 1f;
     public float stabDuration = 1f;
@@ -36,10 +31,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-
     void Update()
     {
-
         spriteRenderer.sprite = (cooldown <= 0) ? spriteSet.ready : spriteSet.attack;
     }
 
@@ -56,15 +49,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         cooldown -= Time.fixedDeltaTime;
-        bool fast = GameManager.Instance.playerHealth.health >= Health.MaxHealth;
+        bool fast = GameManager.Instance.playerHealth >= 4;
         float speed = fast ? fastSpeed : slowSpeed;
-        float turn = fast ? fastTurn : slowTurn;
 
         look.Normalize();
 
         Vector2 delta = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        delta.Normalize();
+        if (delta.magnitude > .01f) look = delta;
 
+        delta.Normalize();
         delta *= speed * Time.fixedDeltaTime;
         Vector2 position = myRigidbody2D.position + delta;
         myRigidbody2D.MovePosition(position);
@@ -72,11 +65,10 @@ public class PlayerController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(myTransform.position, radius, layerMask);
         if (collider != null)
         {
-            Health health = collider.GetComponent<Health>();
-            if (health != null)
+            GuardController guard = collider.GetComponent<GuardController>();
+            if (guard != null)
             {
-                Debug.Log(health.gameObject.name);
-                health.TakeDamage();
+                guard.Die(collider.transform.position - myTransform.position);
                 Vector2 stabDirection = collider.transform.position - myTransform.position;
                 look.x = RoundDirection(stabDirection.x);
                 look.y = RoundDirection(stabDirection.y);
@@ -84,7 +76,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        float angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
         myRigidbody2D.MoveRotation(angle);
     }
 

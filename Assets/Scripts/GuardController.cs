@@ -7,6 +7,7 @@ using UnityEngine;
 public class GuardController : MonoBehaviour
 {
     public SpriteSet spriteSet;
+    bool dead = false;
 
     public Transform bulletPrefab;
     public Vector2 spawnPoint = Vector3.zero;
@@ -50,7 +51,9 @@ public class GuardController : MonoBehaviour
 
     void Update()
     {
-        if (cooldown > (1/rateOfFire)*warning)
+        if (dead)
+            myRenderer.sprite = spriteSet.dead;
+        else if (cooldown > (1 / rateOfFire) * warning)
             myRenderer.sprite = spriteSet.ready;
         else
             myRenderer.sprite = spriteSet.attack;
@@ -59,6 +62,9 @@ public class GuardController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (dead)
+            return;
+
         cooldown -= Time.fixedDeltaTime;
         Vector2 playerPosition = GameManager.Instance.playerTransform.position;
         Vector2 thisPosition = myTransform.position;
@@ -125,6 +131,17 @@ public class GuardController : MonoBehaviour
         Instantiate(bulletPrefab, transformedSpawnPoint, myTransform.rotation, null);
 
         cooldown = 1 / rateOfFire;
+    }
+
+    // Called when player stabs this guard
+    public void Die(Vector3 direction)
+    {
+        if (dead) return; // Can't die if already dead
+        myRenderer.sortingLayerName = "Dead";
+        myTransform.Rotate(new Vector3(0, 0, 1), 90f);
+        GetComponent<Collider2D>().enabled = false;
+        GameManager.Instance.playerHealth = Mathf.Min(GameManager.Instance.playerHealth + 1, 4);
+        dead = true;
     }
 
     void OnDrawGizmosSelected()

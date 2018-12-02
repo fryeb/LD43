@@ -14,9 +14,8 @@ public class BulletController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Health health = collision.collider.GetComponent<Health>();
-        if (health)
-            health.TakeDamage();
+        if (collision.gameObject.tag == "Player")
+            GameManager.Instance.playerHealth--;
         Destroy(gameObject);
     }
 }

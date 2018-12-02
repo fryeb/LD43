@@ -17,15 +17,17 @@ public class HUDController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        previousHealth = GameManager.Instance.playerHealth.health;
+        previousHealth = GameManager.Instance.playerHealth;
     }
 
     void Update()
     {
-        int health = GameManager.Instance.playerHealth.health;
-        if (health > previousHealth)
+        int health = GameManager.Instance.playerHealth;
+        if (health <= 0 && previousHealth > 0)
+            animator.SetTrigger("die");
+        else if (health > previousHealth)
             animator.SetTrigger("heal");
-        else if (health < previousHealth)
+        else if (health < previousHealth && health > 0)
             animator.SetTrigger("damage");
 
         previousHealth = health;
@@ -33,11 +35,17 @@ public class HUDController : MonoBehaviour
 
     void UpdateHeart()
     {
-        int health = GameManager.Instance.playerHealth.health;
+        int health = GameManager.Instance.playerHealth;
         if (health > hearts.Length) health = hearts.Length;
         if (health <= 0)
+        {
             heartImage.sprite = null;
+            heartImage.color = Color.clear;
+        }
         else
+        {
             heartImage.sprite = hearts[health - 1];
+            heartImage.color = Color.white;
+        }
     }
 }

@@ -8,4 +8,5 @@ public class SpriteSet : ScriptableObject
     public Sprite idle;
     public Sprite ready;
     public Sprite attack;
+    public Sprite dead;
 }
