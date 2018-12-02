@@ -33,7 +33,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        spriteRenderer.sprite = (cooldown <= 0) ? spriteSet.ready : spriteSet.attack;
+        if (GameManager.Instance.playerHealth <= 0)
+            spriteRenderer.sprite = spriteSet.dead;
+        else if (cooldown <= 0)
+            spriteRenderer.sprite = spriteSet.ready;
+        else
+            spriteRenderer.sprite = spriteSet.attack;
     }
 
 
