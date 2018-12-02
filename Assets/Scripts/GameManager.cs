@@ -11,16 +11,14 @@ public class GameManager : MonoBehaviour
 
     public Transform playerTransform;
     public int playerHealth = 2;
-
-    private static GameManager instance;
-    public static GameManager Instance {  get { return instance; } }
+    public static GameManager Instance { get; private set; }
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
             Debug.LogError("Multiple GameManagers");
 
-        instance = this;
+        Instance = this;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.GetComponent<Transform>();

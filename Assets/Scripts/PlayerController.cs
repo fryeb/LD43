@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.playerHealth <= 0)
+            return;
+
         cooldown -= Time.fixedDeltaTime;
         bool fast = GameManager.Instance.playerHealth >= 4;
         float speed = fast ? fastSpeed : slowSpeed;

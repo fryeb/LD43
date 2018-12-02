@@ -62,7 +62,7 @@ public class GuardController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (dead)
+        if (dead || GameManager.Instance.playerHealth <= 0)
             return;
 
         cooldown -= Time.fixedDeltaTime;

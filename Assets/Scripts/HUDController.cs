@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class HUDController : MonoBehaviour
@@ -47,5 +48,10 @@ public class HUDController : MonoBehaviour
             heartImage.sprite = hearts[health - 1];
             heartImage.color = Color.white;
         }
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
