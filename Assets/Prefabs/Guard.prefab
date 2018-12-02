@@ -108,6 +108,7 @@ MonoBehaviour:
   turn: 0.1
   rateOfFire: 0.5
   warning: 0.2
+  fadeOutDuration: 5
 --- !u!212 &212865570229112640
 SpriteRenderer:
   m_ObjectHideFlags: 1

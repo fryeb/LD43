@@ -38,6 +38,7 @@ TextureImporter:
     21300066: guard0_dead
     21300068: guard1_dead
     21300070: guard2_dead
+    21300072: heart_dead
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -495,7 +496,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 57
-        y: 15
+        y: 24
         width: 6
         height: 6
       alignment: 0
@@ -675,7 +676,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 55
-        y: 8
+        y: 17
         width: 4
         height: 6
       alignment: 0
@@ -695,7 +696,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
-        y: 8
+        y: 17
         width: 4
         height: 6
       alignment: 0
@@ -714,8 +715,8 @@ TextureImporter:
       name: bullet
       rect:
         serializedVersion: 2
-        x: 60
-        y: 22
+        x: 54
+        y: 26
         width: 2
         height: 4
       alignment: 0
@@ -739,7 +740,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -759,7 +760,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -779,7 +780,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -799,7 +800,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -819,7 +820,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -839,13 +840,33 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: b284547181fa04e42b7f7ba757339564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_dead
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 8
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda1d29a9372b3a429c9bfc9cab58468
       vertices: []
       indices: 
       edges: []

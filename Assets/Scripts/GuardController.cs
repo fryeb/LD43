@@ -21,6 +21,7 @@ public class GuardController : MonoBehaviour
     public float rateOfFire = 1;
     [Range(0f, 1f)]
     public float warning = 0.5f;
+    public float fadeOutDuration = 1f;
 
     private float cooldown = 0f;
 
@@ -52,7 +53,13 @@ public class GuardController : MonoBehaviour
     void Update()
     {
         if (dead)
+        {
             myRenderer.sprite = spriteSet.dead;
+            Color color = myRenderer.color;
+            if (color.a < 0) Destroy(gameObject);
+            color.a -= Time.deltaTime / fadeOutDuration;
+            myRenderer.color = color;
+        }
         else if (cooldown > (1 / rateOfFire) * warning)
             myRenderer.sprite = spriteSet.ready;
         else
@@ -141,6 +148,7 @@ public class GuardController : MonoBehaviour
         myTransform.Rotate(new Vector3(0, 0, 1), 90f);
         GetComponent<Collider2D>().enabled = false;
         GameManager.Instance.playerHealth = Mathf.Min(GameManager.Instance.playerHealth + 1, 4);
+        GameManager.Instance.killCount++;
         dead = true;
     }
 

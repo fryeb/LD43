@@ -1120,6 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hearts:
+  - {fileID: 21300072, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   - {fileID: 21300038, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   - {fileID: 21300040, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
   - {fileID: 21300042, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
