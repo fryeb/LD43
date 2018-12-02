@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4411324378117822}
   - component: {fileID: 114563156765695260}
   - component: {fileID: 212853623314942140}
-  - component: {fileID: 61897151175302556}
   - component: {fileID: 50289481566356230}
+  - component: {fileID: 58652386395892050}
   m_Layer: 9
   m_Name: Guard (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &61897151175302556
-BoxCollider2D:
+--- !u!58 &58652386395892050
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,19 +75,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 0.5}
-    newSize: {x: 0.625, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
-  m_Size: {x: 0.625, y: 0.3}
-  m_EdgeRadius: 0
+  m_Radius: 0.3125
 --- !u!114 &114563156765695260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,10 +93,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
     type: 2}
   spawnPoint: {x: -0.25, y: 0.25}
-  speed: 1
+  speed: 3
+  shootDistance: 5
   walkAwayDistance: 1.5
   turn: 0.1
-  rateOfFire: 0.5
+  rateOfFire: 4
   warning: 0.2
   fadeOutDuration: 5
 --- !u!212 &212853623314942140

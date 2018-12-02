@@ -37,7 +37,7 @@ public class HUDController : MonoBehaviour
     void UpdateHeart()
     {
         int health = GameManager.Instance.playerHealth;
-        if (health > hearts.Length)
+        if (health >= hearts.Length)
             health = hearts.Length - 1;
 
         heartImage.sprite = hearts[health];

@@ -13,6 +13,8 @@ public class GuardController : MonoBehaviour
     public Vector2 spawnPoint = Vector3.zero;
     [Range(1f, 15f)]
     public float speed = 1f;
+    [Range(1f, 15f)]
+    public float shootDistance = 1f;
     [Range(.01f, 2f)]
     public float walkAwayDistance;
     [Range(.01f, .1f)]
@@ -29,6 +31,8 @@ public class GuardController : MonoBehaviour
     private Transform myTransform;
     private SpriteRenderer myRenderer;
     private int layerMask;
+
+    private Vector3 origin;
 
     private static readonly Vector2[] directions =
     {
@@ -48,6 +52,8 @@ public class GuardController : MonoBehaviour
         myTransform = GetComponent<Transform>();
         myRenderer = GetComponent<SpriteRenderer>();
         layerMask = (1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Wall"));
+        origin = myTransform.position;
+        cooldown = 1 / rateOfFire;
     }
 
     void Update()
@@ -81,7 +87,9 @@ public class GuardController : MonoBehaviour
         float walkableDistance = speed*Time.fixedDeltaTime;
         float distance = Mathf.Infinity;
         Vector2 direction = Vector2.zero;
+        Vector2 shootDirection = Utils.RoundDirection(thisToPlayerDirection);
         Vector2 lookDirection = Vector2.zero;
+
         foreach (Vector2 shootCandidate in directions)
         {
             float parallelComponent = Vector3.Dot(shootCandidate, thisToPlayerDirection);
@@ -105,25 +113,25 @@ public class GuardController : MonoBehaviour
             if (hit.collider == null || hit.collider.gameObject.tag != "Player")
                 continue;
 
-            direction = walkCandidate.normalized;
+            direction += walkCandidate.normalized;
             lookDirection = shootCandidate;
             distance = candidateDistance;
         }
 
-        float distanceToPlayer = thisToPlayerDirection.magnitude;
-        if (distanceToPlayer <= walkAwayDistance)
-            direction = -lookDirection;
+        myRigidbody2D.MovePosition(thisPosition + direction.normalized * Mathf.Min(distance, walkableDistance));
 
-        RaycastHit2D lineOfSight = Physics2D.Raycast(thisPosition, thisToPlayerDirection, Mathf.Infinity, layerMask); 
-        myRigidbody2D.MovePosition(thisPosition + direction * Mathf.Min(distance, walkableDistance));
+        // Dont look at the player if we cant see them
+        RaycastHit2D lineOfSight = Physics2D.Raycast(thisPosition, thisToPlayerDirection, Mathf.Infinity, layerMask);
         if (lineOfSight.collider == null || lineOfSight.collider.gameObject.tag != "Player")
         {
             lookDirection = direction;
-            Debug.Log("cant see player");
+        }
+        else if (thisToPlayerDirection.magnitude > shootDistance)
+        {
+            direction = lookDirection;
         }
 
         if (distance < walkableDistance) Shoot();
-
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90;
         myRigidbody2D.MoveRotation(angle);
     }
@@ -150,6 +158,11 @@ public class GuardController : MonoBehaviour
         GameManager.Instance.playerHealth = Mathf.Min(GameManager.Instance.playerHealth + 1, 4);
         GameManager.Instance.killCount++;
         dead = true;
+    }
+
+    public void Respawn()
+    {
+        myTransform.position = origin;
     }
 
     void OnDrawGizmosSelected()

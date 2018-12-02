@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BulletController : MonoBehaviour {
 
-    float speed = 1f;
+    public float speed = 1f;
 
 	void Start()
     {
@@ -16,6 +16,13 @@ public class BulletController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
             GameManager.Instance.playerHealth--;
-        Destroy(gameObject);
+        else
+        {
+            GuardController guardController = collision.gameObject.GetComponent<GuardController>();
+            if (guardController)
+                guardController.Respawn();
+            else
+                Destroy(gameObject);
+        }
     }
 }
