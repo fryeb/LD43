@@ -42,6 +42,8 @@ public class HUDController : MonoBehaviour
         int health = GameManager.Instance.playerHealth;
         if (health >= hearts.Length)
             health = hearts.Length - 1;
+        else if (health <= 0)
+            health = 0;
 
         heartImage.sprite = hearts[health];
         heartImage.color = Color.white;
