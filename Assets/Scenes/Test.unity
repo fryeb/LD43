@@ -306,7 +306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 286981175}
   - component: {fileID: 286981177}
-  - component: {fileID: 286981176}
   - component: {fileID: 286981174}
   - component: {fileID: 286981173}
   - component: {fileID: 286981172}
@@ -420,10 +419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759b76b545790b34dbb826704e658d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteSet: {fileID: 11400000, guid: c7819bc500663e045954917297452d41, type: 2}
   slowSpeed: 2
   fastSpeed: 5
   slowTurn: 0.1
   fastTurn: 0.01
+  radius: 0.4
+  stabDuration: 0.5
 --- !u!4 &286981175
 Transform:
   m_ObjectHideFlags: 0
@@ -437,20 +439,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 167.23601}
---- !u!114 &286981176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 286981170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba24c1bffe4a8dc43899ebe513b48f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteSet: {fileID: 11400000, guid: c7819bc500663e045954917297452d41, type: 2}
-  originOffset: {x: -0.25, y: 0}
-  range: 0.3
 --- !u!114 &286981177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e1a3fb18731f4d86feb7933519238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
 --- !u!50 &430419096
 Rigidbody2D:
   serializedVersion: 4
@@ -973,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e1a3fb18731f4d86feb7933519238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
 --- !u!4 &737619596
 Transform:
   m_ObjectHideFlags: 0
@@ -1135,6 +1123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8871bc8ba5c0c984a92308afa674d9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 21300038, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  - {fileID: 21300040, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  - {fileID: 21300042, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  - {fileID: 21300044, guid: 6165b06362b819b4791515f965aba2d4, type: 3}
+  heartImage: {fileID: 1634458461}
 --- !u!1 &827083039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e1a3fb18731f4d86feb7933519238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
 --- !u!4 &1266230872
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,7 +2128,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1634458459}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87ab96e25fc6db54a852cef2b60064c8, type: 3}
   m_Name: 
