@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public Transform playerTransform;
     public int playerHealth = 2;
+    public Transform bloodPrefab;
     public static GameManager Instance { get; private set; }
 
     void Awake()

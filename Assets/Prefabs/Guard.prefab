@@ -92,12 +92,12 @@ MonoBehaviour:
   spriteSet: {fileID: 11400000, guid: 7dd191481ab2ee44fbd4284cd4329eea, type: 2}
   bulletPrefab: {fileID: 4645076254165868, guid: df6de41c00581da47ae83f01a3eaf549,
     type: 2}
-  spawnPoint: {x: -0.25, y: 0.25}
-  speed: 3
+  spawnPoint: {x: 0, y: 0.4}
+  speed: 2
   shootDistance: 5
   walkAwayDistance: 1.5
   turn: 0.1
-  rateOfFire: 4
+  rateOfFire: 1
   warning: 0.2
   fadeOutDuration: 5
 --- !u!212 &212865570229112640

@@ -157,6 +157,7 @@ public class GuardController : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GameManager.Instance.playerHealth = Mathf.Min(GameManager.Instance.playerHealth + 1, 4);
         GameManager.Instance.killCount++;
+        Instantiate(GameManager.Instance.bloodPrefab, myTransform.position, Quaternion.identity);
         dead = true;
     }
 

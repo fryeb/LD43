@@ -12,6 +12,7 @@ public class HUDController : MonoBehaviour
     public Sprite[] hearts;
 
     public Image heartImage;
+    public Text scoreText;
 
     private int previousHealth;
 
@@ -32,6 +33,8 @@ public class HUDController : MonoBehaviour
             animator.SetTrigger("damage");
 
         previousHealth = health;
+
+        scoreText.text = GameManager.Instance.killCount.ToString();
     }
 
     void UpdateHeart()
