@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 look = Vector2.up;
     private int layerMask;
 
+    private bool dead;
+
     void Start()
     {
         layerMask = 1 << LayerMask.NameToLayer("Enemy");
@@ -53,8 +55,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameManager.Instance.playerHealth <= 0)
+
+        if (dead)
             return;
+        if (GameManager.Instance.playerHealth <= 0)
+        {
+            dead = true;
+            spriteRenderer.sortingLayerName = "Dead";
+            Instantiate(GameManager.Instance.bloodPrefab, myTransform.position, Quaternion.identity);
+            return;
+        }
 
         cooldown -= Time.fixedDeltaTime;
         bool fast = GameManager.Instance.playerHealth >= 4;

@@ -36,7 +36,7 @@ public class HUDController : MonoBehaviour
 
         scoreText.text = GameManager.Instance.killCount.ToString();
     }
-
+    
     void UpdateHeart()
     {
         int health = GameManager.Instance.playerHealth;
@@ -52,5 +52,10 @@ public class HUDController : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
